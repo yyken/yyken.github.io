@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yyken.github.io/2014/04/28/install_ihaskell/</loc>
+    <lastmod>2014-04-27T17:13:36.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://yyken.github.io/2012/04/21/aws_ec2_remote/</loc>
     <lastmod>2012-04-21T03:13:36.000Z</lastmod>
   </url>
@@ -9,11 +14,6 @@
   <url>
     <loc>http://yyken.github.io/2012/05/05/notepadpp_ftp/</loc>
     <lastmod>2012-05-05T06:49:36.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://yyken.github.io/2014/04/28/install_ihaskell/</loc>
-    <lastmod>2014-04-27T17:13:36.000Z</lastmod>
   </url>
   
   <url>

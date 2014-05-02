@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yyken.github.io/"/>
-  <updated>2014-05-02T15:24:44.352Z</updated>
+  <updated>2014-05-02T15:29:57.940Z</updated>
   <id>http://yyken.github.io/</id>
   
   <author>
@@ -31,19 +31,21 @@
     <link href="http://yyken.github.io/2014/04/28/install_ihaskell/"/>
     <id>http://yyken.github.io/2014/04/28/install_ihaskell/</id>
     <published>2014-04-27T17:13:36.000Z</published>
-    <updated>2014-05-02T15:12:29.000Z</updated>
+    <updated>2014-05-02T15:29:35.000Z</updated>
     <content type="html"><![CDATA[<p>最近稍微看一下Haskell，不過ghci真的不是很好用啊~~
 偶然發現IHaskell，有用過ipython的人應該就知道是什麼了 XD
 不過在 mac osx 10.9.2 安裝IHaskell真的是一堆挫折，累死了</p>
 <a id="more"></a>
 
-<h3 id="install-haskell-platform，不能用clang-compile，指定gcc-compile">install haskell-platform，不能用clang compile，指定gcc compile</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+<p>install haskell-platform，不能用clang compile，指定gcc compile</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre>brew install gcc
 brew install haskell-platform --cc=<span class="regexp">/usr/local</span><span class="regexp">/bin/gcc</span>-<span class="number">4.8</span>
 </pre></td></tr></table></figure>
 
-<h3 id="安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝">安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+<p>安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -55,14 +57,16 @@ cd IHaskell
 ./build.sh all
 </pre></td></tr></table></figure>
 
-<h3 id="第一次執行ihaskell時，初始化會遇到-xcode-5.1-的問題，使用下面的指令執行">第一次執行IHaskell時，初始化會遇到 xcode 5.1 的問題，使用下面的指令執行</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+<p>第一次執行IHaskell時，初始化會遇到 xcode 5.1 的問題，使用下面的指令執行</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>ARCHFLAGS<span class="subst">=-</span>Wno<span class="attribute">-error</span><span class="subst">=</span>unused<span class="attribute">-command</span><span class="attribute">-line</span><span class="attribute">-argument</span><span class="attribute">-hard</span><span class="attribute">-error</span><span class="attribute">-in</span><span class="attribute">-future</span> iHaskell console
 </pre></td></tr></table></figure>
 
 <blockquote>
 <p><a href="http://kaspermunck.github.io/2014/03/fixing-clang-error/" target="_blank">http://kaspermunck.github.io/2014/03/fixing-clang-error/</a></p>
 </blockquote>
-<h3 id="安裝好後，必須重新安裝ihaskell-virtualenv環境的-ipython">安裝好後，必須重新安裝IHaskell virtualenv環境的 ipython</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+<p>安裝好後，必須重新安裝IHaskell virtualenv環境的 ipython</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4

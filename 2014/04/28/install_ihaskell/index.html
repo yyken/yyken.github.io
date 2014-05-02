@@ -100,25 +100,27 @@
       
       <section id="main"
         
-      ><article id="post-rla6g9v0gzyh9ul5" class="article article-type-post" itemscope itemprop="blogPost">
+      ><article id="post-pu9r38779q1snibb" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div id="toc"><span class="toc-header">Contents</span><ol class="article-toc"><li class="article-toc-item article-toc-level-3"><a class="article-toc-link" href="#install-haskell-platform，不能用clang-compile，指定gcc-compile"><span class="article-toc-text">install haskell-platform，不能用clang compile，指定gcc compile</span></a></li><li class="article-toc-item article-toc-level-3"><a class="article-toc-link" href="#安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝"><span class="article-toc-text">安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝</span></a></li><li class="article-toc-item article-toc-level-3"><a class="article-toc-link" href="#第一次執行ihaskell時，初始化會遇到-xcode-5.1-的問題，使用下面的指令執行"><span class="article-toc-text">第一次執行IHaskell時，初始化會遇到 xcode 5.1 的問題，使用下面的指令執行</span></a></li><li class="article-toc-item article-toc-level-3"><a class="article-toc-link" href="#安裝好後，必須重新安裝ihaskell-virtualenv環境的-ipython"><span class="article-toc-text">安裝好後，必須重新安裝IHaskell virtualenv環境的 ipython</span></a></li></ol></div><p>最近稍微看一下Haskell，不過ghci真的不是很好用啊~~
+        <p>最近稍微看一下Haskell，不過ghci真的不是很好用啊~~
 偶然發現IHaskell，有用過ipython的人應該就知道是什麼了 XD
 不過在 mac osx 10.9.2 安裝IHaskell真的是一堆挫折，累死了</p>
 <a id="more"></a>
 
-<h3 id="install-haskell-platform，不能用clang-compile，指定gcc-compile">install haskell-platform，不能用clang compile，指定gcc compile</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+<p>install haskell-platform，不能用clang compile，指定gcc compile</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre>brew install gcc
 brew install haskell-platform --cc=<span class="regexp">/usr/local</span><span class="regexp">/bin/gcc</span>-<span class="number">4.8</span>
 </pre></td></tr></table></figure>
 
-<h3 id="安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝">安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+<p>安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -130,14 +132,16 @@ cd IHaskell
 ./build.sh all
 </pre></td></tr></table></figure>
 
-<h3 id="第一次執行ihaskell時，初始化會遇到-xcode-5.1-的問題，使用下面的指令執行">第一次執行IHaskell時，初始化會遇到 xcode 5.1 的問題，使用下面的指令執行</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+<p>第一次執行IHaskell時，初始化會遇到 xcode 5.1 的問題，使用下面的指令執行</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>ARCHFLAGS<span class="subst">=-</span>Wno<span class="attribute">-error</span><span class="subst">=</span>unused<span class="attribute">-command</span><span class="attribute">-line</span><span class="attribute">-argument</span><span class="attribute">-hard</span><span class="attribute">-error</span><span class="attribute">-in</span><span class="attribute">-future</span> iHaskell console
 </pre></td></tr></table></figure>
 
 <blockquote>
 <p><a href="http://kaspermunck.github.io/2014/03/fixing-clang-error/" target="_blank">http://kaspermunck.github.io/2014/03/fixing-clang-error/</a></p>
 </blockquote>
-<h3 id="安裝好後，必須重新安裝ihaskell-virtualenv環境的-ipython">安裝好後，必須重新安裝IHaskell virtualenv環境的 ipython</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+<p>安裝好後，必須重新安裝IHaskell virtualenv環境的 ipython</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -182,7 +186,7 @@ iHaskell notebook
       
     </li>
     <li>
-      <a data-url="http://yyken.github.io/2014/04/28/install_ihaskell/" data-id="rla6g9v0gzyh9ul5" data_title="安裝ihaskell"
+      <a data-url="http://yyken.github.io/2014/04/28/install_ihaskell/" data-id="pu9r38779q1snibb" data_title="安裝ihaskell"
         data_summary="最近稍微看一下Haskell，不過ghci真的不是很好用啊~~
 偶然發現IHaskell，有用過ipython的人應該就知道是什麼了 XD
 不過在 mac osx 10.9.2 安裝IHaskell真的是一堆挫折，累死..." class="article-share-link">Share</a>
