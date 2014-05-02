@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[>"<-END Programmer]]></title>
+  
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://yyken.github.io/"/>
+  <updated>2014-05-02T15:17:38.561Z</updated>
+  <id>http://yyken.github.io/</id>
+  
+  <author>
+    <name><![CDATA[yyken]]></name>
+    <email><![CDATA[yyken@outlook.com]]></email>
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://yyken.github.io/2014/04/30/hello-world/"/>
+    <id>http://yyken.github.io/2014/04/30/hello-world/</id>
+    <published>2014-04-30T09:47:09.000Z</published>
+    <updated>2014-04-30T09:47:09.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io" target="_blank">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs" target="_blank">documentation</a> to learn how to use.</p>
+]]></content>
+    
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[安裝ihaskell]]></title>
+    <link href="http://yyken.github.io/2014/04/28/install_ihaskell/"/>
+    <id>http://yyken.github.io/2014/04/28/install_ihaskell/</id>
+    <published>2014-04-27T17:13:36.000Z</published>
+    <updated>2014-05-02T15:12:29.000Z</updated>
+    <content type="html"><![CDATA[<p>最近稍微看一下Haskell，不過ghci真的不是很好用啊~~
+偶然發現IHaskell，有用過ipython的人應該就知道是什麼了 XD
+不過在 mac osx 10.9.2 安裝IHaskell真的是一堆挫折，累死了</p>
+<a id="more"></a>
+
+<h3 id="install-haskell-platform，不能用clang-compile，指定gcc-compile">install haskell-platform，不能用clang compile，指定gcc compile</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>brew install gcc
+brew install haskell-platform --cc=<span class="regexp">/usr/local</span><span class="regexp">/bin/gcc</span>-<span class="number">4.8</span>
+</pre></td></tr></table></figure>
+
+<h3 id="安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝">安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>cabal update && cabal <span class="keyword">install</span> cabal-<span class="keyword">install</span>
+cabal <span class="keyword">install</span> happy cpphs
+git clone https://github.com/gibiansky/IHaskell
+cd IHaskell
+./build.sh all
+</pre></td></tr></table></figure>
+
+<h3 id="第一次執行ihaskell時，初始化會遇到-xcode-5.1-的問題，使用下面的指令執行">第一次執行IHaskell時，初始化會遇到 xcode 5.1 的問題，使用下面的指令執行</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ARCHFLAGS<span class="subst">=-</span>Wno<span class="attribute">-error</span><span class="subst">=</span>unused<span class="attribute">-command</span><span class="attribute">-line</span><span class="attribute">-argument</span><span class="attribute">-hard</span><span class="attribute">-error</span><span class="attribute">-in</span><span class="attribute">-future</span> iHaskell console
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="http://kaspermunck.github.io/2014/03/fixing-clang-error/" target="_blank">http://kaspermunck.github.io/2014/03/fixing-clang-error/</a></p>
+</blockquote>
+<h3 id="安裝好後，必須重新安裝ihaskell-virtualenv環境的-ipython">安裝好後，必須重新安裝IHaskell virtualenv環境的 ipython</h3><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="built_in">cd</span> ~/.ihaskell/ipython
+<span class="built_in">source</span> bin/activate
+pip uninstall ipython
+pip install ipython
+</pre></td></tr></table></figure>
+
+<p>完成！執行下面兩種指令就可以玩haskell了 ^○^</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>iHaskell <span class="built_in">console</span>
+iHaskell notebook
+</pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html"><![CDATA[<p>最近稍微看一下Haskell，不過ghci真的不是很好用啊~~
+偶然發現IHaskell，有用過ipython的人應該就知道是什麼了 XD
+不過在 mac osx 10.9.2 安裝IHaskell真的是一堆挫折，累死了</p>
+]]></summary>
+    
+      <category term="haskell" scheme="http://yyken.github.io/tags/haskell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[用Notepad++遠端編輯Linux上的檔案]]></title>
+    <link href="http://yyken.github.io/2012/05/05/notepadpp_ftp/"/>
+    <id>http://yyken.github.io/2012/05/05/notepadpp_ftp/</id>
+    <published>2012-05-05T06:49:36.000Z</published>
+    <updated>2014-05-02T15:13:44.000Z</updated>
+    <content type="html"><![CDATA[<p>有時候使用ssh遠端登入Linux，在瀏覽或者編輯檔案，在各個資料夾間切換，輸入指令，總是感到十分不便。也許是還沒找到方便的方法吧。不過最近發現透過熟悉的Notpad++，以SFTP連到遠端，就可以直接開啟檔案編輯或瀏覽，相當方便啊！ </p>
+<a id="more"></a> 
+
+<p>首先開啟NppFTP視窗</p>
+<p><a href="http://lh4.ggpht.com/-rJzfthkGswE/T6TNadSaLLI/AAAAAAAAB-0/avZ9yBl_qt0/s1600-h/image%25255B4%25255D.png" target="_blank"><img src="http://lh4.ggpht.com/-jMtSpdS7N6M/T6TNb_jQrsI/AAAAAAAAB-8/e3Mwn1mFXo0/image_thumb%25255B2%25255D.png?imgmax=800" alt="image" title="image"></a></p>
+<p>開啟profile settings</p>
+<p><a href="http://lh5.ggpht.com/-nBJOEbcHfUU/T6TNdOeAxeI/AAAAAAAAB_E/90uZNSZfU9Q/s1600-h/image%25255B8%25255D.png" target="_blank"><img src="http://lh3.ggpht.com/-sidLnlTA--s/T6TNeJby9jI/AAAAAAAAB_M/Z_6RPlrZEzE/image_thumb%25255B4%25255D.png?imgmax=800" alt="image" title="image"></a></p>
+<p>新增一個profile</p>
+<p><a href="http://lh4.ggpht.com/-byR3BSO82DI/T6TNfL0r55I/AAAAAAAAB_U/3FSxhHQ8o5Y/s1600-h/image%25255B14%25255D.png" target="_blank"><img src="http://lh5.ggpht.com/-Wqof9orgcQE/T6TNgeCHBhI/AAAAAAAAB_c/I3EPz8goN0M/image_thumb%25255B8%25255D.png?imgmax=800" alt="image" title="image"></a></p>
+<p>如果是使用private key file登入SSH的話，像是EC2，還要做以下的設定：</p>
+<p><a href="http://lh4.ggpht.com/-6HY5uurdHS0/T6TNhObvDrI/AAAAAAAAB_k/_KiK6ctwCfQ/s1600-h/image%25255B26%25255D.png" target="_blank"><img src="http://lh3.ggpht.com/-Vrar8f7phUM/T6TNic-RuyI/AAAAAAAAB_s/KSDPypKZqIY/image_thumb%25255B14%25255D.png?imgmax=800" alt="image" title="image"></a></p>
+<p>按一下Connect button，選擇要連線的profile，連線成功後，就可以直接點選檔案編輯了！</p>
+<p><a href="http://lh4.ggpht.com/-qhG_6b48k8A/T6TNjAm76NI/AAAAAAAAB_0/yawSgDET_Mk/s1600-h/image%25255B22%25255D.png" target="_blank"><img src="http://lh6.ggpht.com/-gO9roIsDb0o/T6TNkQTcm3I/AAAAAAAAB_8/mpLMmsQ4-PU/image_thumb%25255B12%25255D.png?imgmax=800" alt="image" title="image"></a></p>
+<p>看log，或是編輯設定檔很方便呢！ ^__^</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>有時候使用ssh遠端登入Linux，在瀏覽或者編輯檔案，在各個資料夾間切換，輸入指令，總是感到十分不便。也許是還沒找到方便的方法吧。不過最近發現透過熟悉的Notpad++，以SFTP連到遠端，就可以直接開啟檔案編輯或瀏覽，相當方便啊！ </p>
+]]></summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[使用遠端桌面連上AWS EC2]]></title>
+    <link href="http://yyken.github.io/2012/04/21/aws_ec2_remote/"/>
+    <id>http://yyken.github.io/2012/04/21/aws_ec2_remote/</id>
+    <published>2012-04-21T03:13:36.000Z</published>
+    <updated>2014-05-02T15:15:14.000Z</updated>
+    <content type="html"><![CDATA[<p>在aws 上裝了一台ubuntu EC2，一直以來都是用putty連到機器上操作。最近研究一下Linux上幾種遠端桌面的作法：  </p>
+<ol>
+<li>VNC, 有點舊又慢，連線過程沒有加密</li>
+<li>NX，商業軟體，有免費版允許同時二個連線，是在SSH通道上實現。</li>
+<li>FreeNX，Open Source的NX，很久沒更新了！</li>
+<li>NeatX，Google提供的Open Source NX，一樣很久沒更新了！</li>
+</ol>
+<a id="more"></a>
+
+<p> 最後，我選擇了X2go<br> X2go，一樣是Open Source的NX，是目前看到的幾個比較好的選擇，還提供自己實作的x2goclient, 不過在官網上只看過Debian/Ubuntu的安裝說明，其他版本的Linux可能要自己編譯了！  </p>
+<h2 id="安裝步驟(以ubuntu為例)：">安裝步驟(以Ubuntu為例)：</h2><p><code>如果系統沒有add-apt-repository，先安裝：</code></p>
+<p><code>$ sudo apt-get install python-software-properties</code></p>
+<p><code>把X2go repository加到APT</code></p>
+<p><code>$ sudo add-apt-repository ppa:x2go/stable</code></p>
+<p><code>$ sudo apt-get update</code></p>
+<p> Search一下，可以發現X2go的套件  </p>
+<p><code>$ apt-cache search x2go</code></p>
+<p> 開始安裝X2go  </p>
+<p><code>$ sudo apt-get install x2goserver</code></p>
+<p> 安裝過程中，會連帶安裝Xorg相關套件，APT套件系統真的很神奇 ^ ^<br> 安裝LXDE，畢竟是micro的EC2 instance，還是用輕量級的桌面管理系統吧  </p>
+<p><code>$ sudo apt-get install lxde</code></p>
+<p> 安裝x2golxdebindings  </p>
+<p><code>$ sudo apt-get install x2golxdebindings #如果是使用gnome，就安裝x2gognomebindings</code></p>
+<p> 最後編輯 /usr/bin/startlxde ，在上面加上  </p>
+<p><code>LD_LIBRARY_PATH=/usr/lib/nx/X11</code></p>
+<p><code>[![image][1]][2]</code>
+<code>不然當你用x2go client程式連上去，只會看到一個全黑的視窗唷 XD</code>
+<code>另外，可以選擇安裝 libjpeg-turbo來讓遠端桌面快一點</code>
+<code>最後打開x2goclient，填上連線資訊，就可以連上去囉！</code></p>
+<h2 id="以x2goclient連線">以X2goclient連線</h2><p>  <a href="http://lh4.ggpht.com/-NmpPsMpv_yA/T5KggdU8ukI/AAAAAAAAB8I/9FLdo-XeKR8/s1600-h/image%25255B4%25255D.png" target="_blank"><img src="http://lh5.ggpht.com/-0IQz-8zXOmI/T5KgkOWSI3I/AAAAAAAAB8U/Qef0rUmEdoY/image_thumb%25255B2%25255D.png?imgmax=800" alt="image" title="image"></a>  </p>
+<p><a href="http://lh6.ggpht.com/-zaRo4nAOsts/T5KglfLSJHI/AAAAAAAAB8c/KPdrQfyNiXA/s1600-h/image%25255B8%25255D.png" target="_blank"><img src="http://lh5.ggpht.com/-FoDrmIxoXHM/T5Kgm8e_McI/AAAAAAAAB8k/hcT0p8pbdO4/image_thumb%25255B4%25255D.png?imgmax=800" alt="image" title="image"></a>  </p>
+<h2 id="ref：">Ref：</h2><ol>
+<li><a href="http://www.iteye.com/news/7975-" target="_blank">http://www.iteye.com/news/7975-</a></li>
+<li><a href="http://www.x2go.org/doku.php/wiki:x2go-repository-ubuntu" target="_blank">http://www.x2go.org/doku.php/wiki:x2go-repository-ubuntu</a></li>
+<li><a href="http://tpokorra.blogspot.com/2012/02/ubuntu-oneiric-and-x2go-with-lxde-for.html" target="_blank">http://tpokorra.blogspot.com/2012/02/ubuntu-oneiric-and-x2go-with-lxde-for.html</a></li>
+<li><a href="http://foss-boss.blogspot.com/2010/11/show-off-ubuntu-desktop-on-cloud.html" target="_blank">http://foss-boss.blogspot.com/2010/11/show-off-ubuntu-desktop-on-cloud.html</a></li>
+</ol>
+]]></content>
+    <summary type="html"><![CDATA[<p>在aws 上裝了一台ubuntu EC2，一直以來都是用putty連到機器上操作。最近研究一下Linux上幾種遠端桌面的作法：  </p>
+<ol>
+<li>VNC, 有點舊又慢，連線過程沒有加密</li>
+<li>NX，商業軟體，有免費版允許同時二個連線，是在SSH通道上實現。</li>
+<li>FreeNX，Open Source的NX，很久沒更新了！</li>
+<li>NeatX，Google提供的Open Source NX，一樣很久沒更新了！</li>
+</ol>
+]]></summary>
+    
+      <category term="AWS" scheme="http://yyken.github.io/tags/AWS/"/>
+    
+  </entry>
+  
+</feed>
