@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yyken.github.io/"/>
-  <updated>2014-05-12T04:23:55.383Z</updated>
+  <updated>2014-05-12T04:40:23.992Z</updated>
   <id>http://yyken.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yyken.github.io/2014/05/05/agricultural-trading-market/"/>
     <id>http://yyken.github.io/2014/05/05/agricultural-trading-market/</id>
     <published>2014-05-05T03:50:31.000Z</published>
-    <updated>2014-05-12T04:18:33.000Z</updated>
+    <updated>2014-05-12T04:40:00.000Z</updated>
     <content type="html"><![CDATA[<p>最近一直在關注g0v hackpad上的專案，正好看到這個與農產品交易行情站有關的<a href="https://g0v.hackpad.com
 /Agricultural-trading-market-7qSSDcfa4gv">專案</a>，正好最近在玩pandas，就把上面的data抓下來處理一下，簡單畫幾張圖吧！</p>
 <a id="more"></a>
@@ -34,7 +34,8 @@
 <span class="keyword">import</span> pandas <span class="keyword">as</span> pd
 </pre></td></tr></table></figure>
 
-<h2 id="read-all-json-files">Read All JSON Files</h2><figure class="highlight python"><table><tr><td class="gutter"><pre>1
+<h2 id="read-all-json-files">Read All JSON Files</h2><p>從<a href="https://db.tt/nqW5X4g1" target="_blank">這裡</a>下載資料到local。裡面是一堆的json檔，先寫程式把json檔讀進來：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -329,6 +330,19 @@ d_104[<span class="string">'date'</span>] = pd.to_datetime(d_104[<span class="st
       <category term="pandas" scheme="http://yyken.github.io/tags/pandas/"/>
     
       <category term="g0v" scheme="http://yyken.github.io/tags/g0v/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[我用IPython寫Blog]]></title>
+    <link href="http://yyken.github.io/2014/04/29/blogging-with-ipython/"/>
+    <id>http://yyken.github.io/2014/04/29/blogging-with-ipython/</id>
+    <published>2014-04-29T03:50:31.000Z</published>
+    <updated>2014-05-12T04:30:07.000Z</updated>
+    <content type="html"><![CDATA[]]></content>
+    
+    
+      <category term="IPython" scheme="http://yyken.github.io/tags/IPython/"/>
     
   </entry>
   
