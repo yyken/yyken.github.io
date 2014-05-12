@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>用pandas處理農產品交易行情資料 | &gt;&quot;&lt;-END Programmer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta content="article" property="og:type">
+<meta content="用pandas處理農產品交易行情資料" property="og:title">
+<meta content="http://yyken.github.io/2014/05/05/agricultural-trading-market/" property="og:url">
+<meta content="https://dl.dropbox.com/u/4339788/blog_images/agricultural-trading-market_files/agricultural-trading-market_21_0.png" property="og:image">
+<meta content=">"<-END Programmer" property="og:site_name">
+<meta content="最近一直在關注g0v hackpad上的專案，正好看到這個與農產品交易行情站有關的專案，正好最近在玩pandas，就把上面的data抓下來處理一下，簡單畫幾張圖吧！" property="og:description">
+<meta content="summary" name="twitter:card">
+<meta content="yyken" name="twitter:creator">
+<link rel="publisher" href="+YehKen">
+  
+    <link rel="alternative" href="/atom.xml" title="&gt;&quot;&lt;-END Programmer" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42257802-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">&gt;&quot;&lt;-END Programmer</a>
+    <div class="collapse navbar-collapse nav-menu">
+      <ul class="nav navbar-nav">
+      
+        <li>
+          <a href="/archives">
+            <i class="fa fa-archive"></i>
+            Archives
+          </a>
+        </li>
+      
+        <li>
+          <a href="/categories">
+            <i class="fa fa-folder"></i>
+            Categories
+          </a>
+        </li>
+      
+        <li>
+          <a href="/tags">
+            <i class="fa fa-tags"></i>
+            Tags
+          </a>
+        </li>
+      
+        <li>
+          <a href="/about">
+            <i class="fa fa-user"></i>
+            About
+          </a>
+        </li>
+      
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a id="rss-link" href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="clearfix"></div>
+
+      <div id='content' class="container">
+
+        <div class="page-header-wrapper">
+          <!--[if lt IE 9]><div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>提示:</strong>您的浏览器版本太低了,建议升级到 <strong><a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie" title="IE9">IE9</a></strong> 以上,本站使用<a href="https://www.google.com/intl/zh-CN/chrome/">Chrome浏览器</a>可以获得最好的显示效果.</div><![endif]-->
+          <div class="page-header">
+            <h1 class="title">
+          
+            用pandas處理農產品交易行情資料
+          
+            </h1>
+        </div>
+      </div>
+      
+      <section id="main"
+        
+      ><article id="post-080j47cwgl6hx695" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="toc"><span class="toc-header">Contents</span><ol class="article-toc"><li class="article-toc-item article-toc-level-2"><a class="article-toc-link" href="#setup"><span class="article-toc-text">Setup</span></a></li><li class="article-toc-item article-toc-level-2"><a class="article-toc-link" href="#read-all-json-files"><span class="article-toc-text">Read All JSON Files</span></a></li><li class="article-toc-item article-toc-level-2"><a class="article-toc-link" href="#plot"><span class="article-toc-text">Plot</span></a></li></ol></div><p>最近一直在關注g0v hackpad上的專案，正好看到這個與農產品交易行情站有關的<a href="https://g0v.hackpad.com
+/Agricultural-trading-market-7qSSDcfa4gv">專案</a>，正好最近在玩pandas，就把上面的data抓下來處理一下，簡單畫幾張圖吧！</p>
+<a id="more"></a>
+
+<h2 id="setup">Setup</h2><figure class="highlight python"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>%pylab inline
+<span class="keyword">import</span> os
+<span class="keyword">import</span> re
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+</pre></td></tr></table></figure>
+
+<h2 id="read-all-json-files">Read All JSON Files</h2><figure class="highlight python"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>json_files = [ f <span class="keyword">for</span> f <span class="keyword">in</span> os.listdir(<span class="string">'data/ATM-vegetable-2013.json/'</span>) ]
+fn_re = re.compile(<span class="string">r"^(\d{3}-\d{2}-\d{2})-(\d{3})"</span>)
+
+<span class="function"><span class="keyword">def</span> <span class="title">read_data</span><span class="params">(fn)</span>:</span>
+    g = fn_re.findall(fn);
+    dt = pd.read_json(<span class="string">'data/ATM-vegetable-2013.json/'</span> + fn)
+    dt[<span class="string">'date'</span>] = g[<span class="number">0</span>][<span class="number">0</span>]
+    dt[<span class="string">'area'</span>] = g[<span class="number">0</span>][<span class="number">1</span>]
+    <span class="keyword">return</span> dt
+</pre></td></tr></table></figure>
+
+<p>先讀一個檔案試試</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>read_data(<span class="string">'102-01-24-512.json'</span>)
+</pre></td></tr></table></figure>
+
+<div style="overflow:scroll;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>average</th>
+      <th>averageChange</th>
+      <th>lower</th>
+      <th>middle</th>
+      <th>product</th>
+      <th>upper</th>
+      <th>volume</th>
+      <th>volumeChange</th>
+      <th>date</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 11.1</td>
+      <td> -3</td>
+      <td>  8</td>
+      <td> 11.0</td>
+      <td> {&#39;name&#39;: &#39;花椰菜&#39;, &#39;type&#39;: &#39;青梗&#39;, &#39;process&#39;: &#39;&#39;}</td>
+      <td> 15</td>
+      <td> 20425</td>
+      <td>  70</td>
+      <td> 102-01-24</td>
+      <td> 512</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td> 19.9</td>
+      <td> -5</td>
+      <td> 15</td>
+      <td> 20.0</td>
+      <td> {&#39;name&#39;: &#39;胡瓜&#39;, &#39;type&#39;: &#39;改良種&#39;, &#39;process&#39;: &#39;&#39;}</td>
+      <td> 25</td>
+      <td>   608</td>
+      <td> -80</td>
+      <td> 102-01-24</td>
+      <td> 512</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 41.6</td>
+      <td>  0</td>
+      <td> 40</td>
+      <td> 41.5</td>
+      <td>  {&#39;name&#39;: &#39;菜豆&#39;, &#39;type&#39;: &#39;白色&#39;, &#39;process&#39;: &#39;&#39;}</td>
+      <td> 45</td>
+      <td>   142</td>
+      <td>   0</td>
+      <td> 102-01-24</td>
+      <td> 512</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td> 16.3</td>
+      <td> -3</td>
+      <td> 13</td>
+      <td> 16.5</td>
+      <td>  {&#39;name&#39;: &#39;甘藍&#39;, &#39;type&#39;: &#39;初秋&#39;, &#39;process&#39;: &#39;&#39;}</td>
+      <td> 25</td>
+      <td> 16990</td>
+      <td>  39</td>
+      <td> 102-01-24</td>
+      <td> 512</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 13.0</td>
+      <td> -6</td>
+      <td> 10</td>
+      <td> 13.0</td>
+      <td> {&#39;name&#39;: &#39;包心白&#39;, &#39;type&#39;: &#39;包白&#39;, &#39;process&#39;: &#39;&#39;}</td>
+      <td> 17</td>
+      <td> 27300</td>
+      <td>  34</td>
+      <td> 102-01-24</td>
+      <td> 512</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td> 76.5</td>
+      <td> 14</td>
+      <td> 50</td>
+      <td> 76.5</td>
+      <td> {&#39;name&#39;: &#39;韭菜&#39;, &#39;type&#39;: &#39;韭菜花&#39;, &#39;process&#39;: &#39;&#39;}</td>
+      <td> 80</td>
+      <td>    44</td>
+      <td> 144</td>
+      <td> 102-01-24</td>
+      <td> 512</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td> 14.0</td>
+      <td> -3</td>
+      <td> 10</td>
+      <td> 14.0</td>
+      <td> {&#39;name&#39;: &#39;大心菜&#39;, &#39;type&#39;: &#39;帶葉&#39;, &#39;process&#39;: &#39;&#39;}</td>
+      <td> 30</td>
+      <td> 17330</td>
+      <td>  49</td>
+      <td> 102-01-24</td>
+      <td> 512</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td> 10.8</td>
+      <td> -2</td>
+      <td>  8</td>
+      <td> 11.0</td>
+      <td>  {&#39;name&#39;: &#39;球莖甘藍&#39;, &#39;type&#39;: &#39;&#39;, &#39;process&#39;: &#39;&#39;}</td>
+      <td> 15</td>
+      <td>  5665</td>
+      <td>   8</td>
+      <td> 102-01-24</td>
+      <td> 512</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 10 columns</p>
+</div>
+
+
+
+<p>沒問題後，一次把所有的檔案讀進來，時間會有點久</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>df = pd.DataFrame()
+<span class="keyword">for</span> fn <span class="keyword">in</span> json_files:
+    d = read_data(fn)
+    df = df.append(d)
+</pre></td></tr></table></figure>
+
+<p>看一下資料的大小，總共38萬多筆資料</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>df.shape
+</pre></td></tr></table></figure>
+
+<p>[output]</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="list">(<span class="title">388320</span>,<span class="number"> 10</span>)</span>
+</pre></td></tr></table></figure>
+
+<p>讀取product欄位裡面的值，因為data type 是dict，我試了很久才找到方法.... orz</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>df[<span class="string">'product'</span>].map(<span class="keyword">lambda</span> x: x[<span class="string">'name'</span>])
+</pre></td></tr></table></figure>
+
+<p>[output]</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre></td><td class="code"><pre>    <span class="number">0</span>     黃秋葵
+    <span class="number">1</span>      百果
+    <span class="number">2</span>     花椰菜
+    <span class="number">3</span>      胡瓜
+    <span class="number">4</span>     花胡瓜
+    <span class="number">5</span>      冬瓜
+    <span class="number">6</span>      絲瓜
+    <span class="number">7</span>      絲瓜
+    <span class="number">8</span>      苦瓜
+    <span class="number">9</span>      苦瓜
+    <span class="number">10</span>     苦瓜
+    <span class="number">11</span>     扁蒲
+    <span class="number">12</span>     扁蒲
+    <span class="number">13</span>     扁蒲
+    <span class="number">14</span>     茄子
+    <span class="keyword">...</span>
+    <span class="number">27</span>    包心白
+    <span class="number">28</span>     芥菜
+    <span class="number">29</span>     芥菜
+    <span class="number">30</span>     芫荽
+    <span class="number">31</span>    紅鳳菜
+    <span class="number">32</span>     蕨菜
+    <span class="number">33</span>     蕨菜
+    <span class="number">34</span>     其他
+    <span class="number">35</span>     蘿蔔
+    <span class="number">36</span>     青蔥
+    <span class="number">37</span>      芋
+    <span class="number">38</span>     甘薯
+    <span class="number">39</span>     甘薯
+    <span class="number">40</span>      薑
+    <span class="number">41</span>     薯蕷
+    Name: product, Length: <span class="number">388320</span>, dtype: object
+</pre></td></tr></table></figure>
+
+<h2 id="plot">Plot</h2><p>最後，把104市場歷年的蘿蔔價格畫出來</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>d1 = df[df[<span class="string">'product'</span>].map(<span class="keyword">lambda</span> x: x[<span class="string">'name'</span>]) == <span class="string">'蘿蔔'</span>]
+
+d_104 = d1[d1[<span class="string">'area'</span>]==<span class="string">'104'</span>]
+
+d_104[<span class="string">'name'</span>] = d_104[<span class="string">'product'</span>].map(<span class="keyword">lambda</span> x: x[<span class="string">'name'</span>])
+
+d_104[<span class="string">'process'</span>] = d_104[<span class="string">'product'</span>].map(<span class="keyword">lambda</span> x: x[<span class="string">'process'</span>])
+d_104[<span class="string">'type'</span>] = d_104[<span class="string">'product'</span>].map(<span class="keyword">lambda</span> x: x[<span class="string">'type'</span>])
+d_104[<span class="string">'date'</span>] = pd.to_datetime(d_104[<span class="string">'date'</span>])
+</pre></td></tr></table></figure>
+
+<p>蘿蔔其實還分各種type,依不同type畫圖可得下面的結果。可能發現某些資料有問題，只有兩筆資料是怎麼回事啊！！之後再慢慢來研究吧</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="keyword">for</span> i,g  <span class="keyword">in</span> d_104.groupby(d_104[<span class="string">'type'</span>]):
+    plt.figure()
+    plt.legend()
+    g.plot(x=<span class="string">'date'</span>,y=<span class="string">'average'</span>)
+</pre></td></tr></table></figure>
+
+<p><img src="https://dl.dropbox.com/u/4339788/blog_images/agricultural-trading-market_files/agricultural-trading-market_21_0.png" alt="png"></p>
+<p><img src="https://dl.dropbox.com/u/4339788/blog_images/agricultural-trading-market_files/agricultural-trading-market_21_1.png" alt="png"></p>
+<p><img src="https://dl.dropbox.com/u/4339788/blog_images/agricultural-trading-market_files/agricultural-trading-market_21_2.png" alt="png"></p>
+<p><img src="https://dl.dropbox.com/u/4339788/blog_images/agricultural-trading-market_files/agricultural-trading-market_21_3.png" alt="png"></p>
+<p><img src="https://dl.dropbox.com/u/4339788/blog_images/agricultural-trading-market_files/agricultural-trading-market_21_4.png" alt="png"></p>
+<p><img src="https://dl.dropbox.com/u/4339788/blog_images/agricultural-trading-market_files/agricultural-trading-market_21_5.png" alt="png"></p>
+
+      
+    </div>
+  </div>
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+</section>
+        
+          
+<aside id="sidebar">
+  
+    
+      
+<div class="widget-wrap center">
+  <ul class="pagination">
+    <li>
+      
+        <span class="nav-prev disabled">Prev</span>
+      
+    </li>
+    <li>
+      <a data-url="http://yyken.github.io/2014/05/05/agricultural-trading-market/" data-id="080j47cwgl6hx695" data_title="用pandas處理農產品交易行情資料"
+        data_summary="最近一直在關注g0v hackpad上的專案，正好看到這個與農產品交易行情站有關的專案，正好最近在玩pandas，就把上面的data抓下來處理一下，簡單畫幾張圖吧！
+
+
+Setup1
+2
+3
+4
+%..." class="article-share-link">Share</a>
+    </li>
+    <li>
+      
+        <a href="/2014/04/28/install-ihaskell/" class="nav-next">Next</a>
+      
+    </li>
+  </ul>
+</div>
+
+
+    
+      <div class="widget-wrap">
+  <div class="post-widget">
+    <i class="fa fa-clock-o"></i>
+    <time datetime="2014-05-05T03:50:31.000Z" itemprop="datePublished">5月 5 2014</time>
+  </div>
+</div>
+
+    
+      
+  <div class="widget-wrap">
+    <div class="post-widget">
+      <i class="fa fa-folder"></i>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="post-widget">
+      <i class="fa fa-tags"></i>
+      <a class="tag-link" href="/tags/g0v/">g0v<span class="tag-count">1</span></a><a class="tag-link" href="/tags/pandas/">pandas<span class="tag-count">1</span></a><a class="tag-link" href="/tags/python/">python<span class="tag-count">1</span></a>
+    </div>
+  </div>
+
+
+    
+  
+</aside>
+
+
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer container">
+    <div id="footer-info" class="inner">
+      <a href="/">&gt;&quot;&lt;-END Programmer</a> &copy; 2014 Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and Theme by <a href="https://github.com/seff/nut" target="_blank">Nut</a>
+    </div>
+  </div>
+</footer>
+<a id="gotop" href="#">
+  <i class="fa fa-chevron-up"></i>
+</a>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="[object Object]" class="mobile-nav-link">0</a>
+  
+    <a href="[object Object]" class="mobile-nav-link">1</a>
+  
+    <a href="[object Object]" class="mobile-nav-link">2</a>
+  
+    <a href="[object Object]" class="mobile-nav-link">3</a>
+  
+</nav>
+
+    
+<script>
+  var disqus_shortname = 'yyken';
+  
+  var disqus_url = 'http://yyken.github.io/2014/05/05/agricultural-trading-market/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

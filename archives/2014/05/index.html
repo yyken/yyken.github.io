@@ -3,16 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>安裝ihaskell | &gt;&quot;&lt;-END Programmer</title>
+  <title>Archives: 2014/5 | &gt;&quot;&lt;-END Programmer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta content="article" property="og:type">
-<meta content="安裝ihaskell" property="og:title">
-<meta content="http://yyken.github.io/2014/04/28/install_ihaskell/" property="og:url">
+  <meta content="website" property="og:type">
+<meta content=">"<-END Programmer" property="og:title">
+<meta content="http://yyken.github.io/archives/2014/05/" property="og:url">
 <meta property="og:image">
 <meta content=">"<-END Programmer" property="og:site_name">
-<meta content="最近稍微看一下Haskell，不過ghci真的不是很好用啊~~
-偶然發現IHaskell，有用過ipython的人應該就知道是什麼了 XD
-不過在 mac osx 10.9.2 安裝IHaskell真的是一堆挫折，累死了" property="og:description">
+<meta property="og:description">
 <meta content="summary" name="twitter:card">
 <meta content="yyken" name="twitter:creator">
 <link rel="publisher" href="+YehKen">
@@ -104,7 +102,9 @@
           <div class="page-header">
             <h1 class="title">
           
-            安裝ihaskell
+            
+              <time datetime="2014-05-12T04:23:55.605Z" itemprop="datePublished">五月 2014</time>
+            
           
             </h1>
         </div>
@@ -112,75 +112,76 @@
       
       <section id="main"
         
-      ><article id="post-a4z54lcionf44za9" class="article article-type-post" itemscope itemprop="blogPost">
+      >
+
+  
+
+
+
+  
+    <article id="post-080j47cwgl6hx695" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
 
     
+      <header class="article-header">
+        <i class="fa fa-file-text-o"></i>
+        
+  
+    <h1 class="archive-title" itemprop="name">
+      <a class="article-title" href="/2014/05/05/agricultural-trading-market/">用pandas處理農產品交易行情資料</a>
+    </h1>
+  
+
+
+        <div class="article-date">
+  <time datetime="2014-05-05T03:50:31.000Z" itemprop="datePublished">5月 5 2014</time>
+</div>
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近稍微看一下Haskell，不過ghci真的不是很好用啊~~
-偶然發現IHaskell，有用過ipython的人應該就知道是什麼了 XD
-不過在 mac osx 10.9.2 安裝IHaskell真的是一堆挫折，累死了</p>
-<a id="more"></a>
+        
+          <!--<div class="thumbnail"><img src="https://dl.dropbox.com/u/4339788/blog_images/agricultural-trading-market_files/agricultural-trading-market_21_0.png" alt="png"></div>-->
+          <p>最近一直在關注g0v hackpad上的專案，正好看到這個與農產品交易行情站有關的<a href="https://g0v.hackpad.com
+/Agricultural-trading-market-7qSSDcfa4gv">專案</a>，正好最近在玩pandas，就把上面的data抓下來處理一下，簡單畫幾張圖吧！</p>
 
-<p>install haskell-platform，不能用clang compile，指定gcc compile</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>brew install gcc
-brew install haskell-platform --cc=<span class="regexp">/usr/local</span><span class="regexp">/bin/gcc</span>-<span class="number">4.8</span>
-</pre></td></tr></table></figure>
+          
+            <p class="article-more-link">
+              <a href="/2014/05/05/agricultural-trading-market/#more">Read More</a>
+            </p>
+          
+        
+        <footer class="article-footer">
+          <a data-url="http://yyken.github.io/2014/05/05/agricultural-trading-market/" data-id="080j47cwgl6hx695" data_title="用pandas處理農產品交易行情資料"
+          data_summary="最近一直在關注g0v hackpad上的專案，正好看到這個與農產品交易行情站有關的專案，正好最近在玩pandas，就把上面的data抓下來處理一下，簡單畫幾張圖吧！
 
-<p>安裝ihaskell，目前直接用cabal安裝會有問題，直接從github下載下來安裝</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>cabal update && cabal <span class="keyword">install</span> cabal-<span class="keyword">install</span>
-cabal <span class="keyword">install</span> happy cpphs
-git clone https://github.com/gibiansky/IHaskell
-cd IHaskell
-./build.sh all
-</pre></td></tr></table></figure>
 
-<p>第一次執行IHaskell時，初始化會遇到 xcode 5.1 的問題，使用下面的指令執行</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>ARCHFLAGS<span class="subst">=-</span>Wno<span class="attribute">-error</span><span class="subst">=</span>unused<span class="attribute">-command</span><span class="attribute">-line</span><span class="attribute">-argument</span><span class="attribute">-hard</span><span class="attribute">-error</span><span class="attribute">-in</span><span class="attribute">-future</span> iHaskell console
-</pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="http://kaspermunck.github.io/2014/03/fixing-clang-error/" target="_blank">http://kaspermunck.github.io/2014/03/fixing-clang-error/</a></p>
-</blockquote>
-<p>安裝好後，必須重新安裝IHaskell virtualenv環境的 ipython</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
+Setup1
 2
 3
 4
-</pre></td><td class="code"><pre><span class="built_in">cd</span> ~/.ihaskell/ipython
-<span class="built_in">source</span> bin/activate
-pip uninstall ipython
-pip install ipython
-</pre></td></tr></table></figure>
+%..." class="article-share-link">Share</a>
+          
+            <a href="http://yyken.github.io/2014/05/05/agricultural-trading-market/#disqus_thread" class="article-comment-link">Comments</a>
+          
+          
 
-<p>完成！執行下面兩種指令就可以玩haskell了 ^○^</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>iHaskell <span class="built_in">console</span>
-iHaskell notebook
-</pre></td></tr></table></figure>
+          
+<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link label label-primary" href="/tags/g0v/">g0v</a></li><li class="article-tag-list-item"><a class="article-tag-list-link label label-success" href="/tags/pandas/">pandas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link label label-info" href="/tags/python/">python</a></li></ul>
 
 
+        </footer>
       
     </div>
   </div>
 </article>
 
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+
+  
+  
+
 
 
 </section>
@@ -189,43 +190,36 @@ iHaskell notebook
 <aside id="sidebar">
   
     
-      
-<div class="widget-wrap center">
-  <ul class="pagination">
-    <li>
-      
-        <a href="/2014/04/30/hello-world/" class="nav-prev">Prev</a>
-      
-    </li>
-    <li>
-      <a data-url="http://yyken.github.io/2014/04/28/install_ihaskell/" data-id="a4z54lcionf44za9" data_title="安裝ihaskell"
-        data_summary="最近稍微看一下Haskell，不過ghci真的不是很好用啊~~
-偶然發現IHaskell，有用過ipython的人應該就知道是什麼了 XD
-不過在 mac osx 10.9.2 安裝IHaskell真的是一堆挫折，累死..." class="article-share-link">Share</a>
-    </li>
-    <li>
-      
-        <a href="/2012/05/05/notepadpp_ftp/" class="nav-next">Next</a>
-      
-    </li>
-  </ul>
-</div>
-
-
-    
       <div class="widget-wrap">
-  <div class="post-widget">
-    <i class="fa fa-clock-o"></i>
-    <time datetime="2014-04-27T17:13:36.000Z" itemprop="datePublished">4月 28 2014</time>
-  </div>
+    <div id="search-form-wrap">
+      <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yyken.github.io"></form>
+    </div>
 </div>
 
     
       
   <div class="widget-wrap">
-    <div class="post-widget">
-      <i class="fa fa-folder"></i>
-      
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li class="recent-list">
+            <a href="/2014/05/05/agricultural-trading-market/">用pandas處理農產品交易行情資料</a>
+          </li>
+        
+          <li class="recent-list">
+            <a href="/2014/04/28/install-ihaskell/">安裝ihaskell</a>
+          </li>
+        
+          <li class="recent-list">
+            <a href="/2012/05/05/notepadpp-ftp/">用Notepad++遠端編輯Linux上的檔案</a>
+          </li>
+        
+          <li class="recent-list">
+            <a href="/2012/04/21/aws-ec2-remote/">使用遠端桌面連上AWS EC2</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
 
@@ -233,9 +227,25 @@ iHaskell notebook
     
       
   <div class="widget-wrap">
-    <div class="post-widget">
-      <i class="fa fa-tags"></i>
-      <a class="tag-link" href="/tags/haskell/">haskell<span class="tag-count">1</span></a>
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        
+         <li class="blogroll">
+           
+             <i class="fa fa-github"></i>
+           
+           <a href="https://github.com/yyken" title="Github">Github</a>
+          </li>
+        
+         <li class="blogroll">
+           
+             <i class="fa fa-google-plus"></i>
+           
+           <a href="https://plus.google.com/+YehKen" title="Google+">Google+</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
 
@@ -276,13 +286,11 @@ iHaskell notebook
 <script>
   var disqus_shortname = 'yyken';
   
-  var disqus_url = 'http://yyken.github.io/2014/04/28/install_ihaskell/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//go.disqus.com/embed.js';
+    dsq.src = '//go.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

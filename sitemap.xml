@@ -2,28 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yyken.github.io/2014/04/28/install_ihaskell/</loc>
+    <loc>http://yyken.github.io/2014/05/05/agricultural-trading-market/</loc>
+    <lastmod>2014-05-05T03:50:31.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yyken.github.io/slide/index.html</loc>
+    <lastmod>2014-05-03T18:44:58.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yyken.github.io/project/p1.html</loc>
+    <lastmod>2014-05-03T18:42:48.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yyken.github.io/project/index.html</loc>
+    <lastmod>2014-05-03T18:42:16.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yyken.github.io/2014/04/28/install-ihaskell/</loc>
     <lastmod>2014-04-27T17:13:36.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://yyken.github.io/2012/04/21/aws_ec2_remote/</loc>
+    <loc>http://yyken.github.io/2012/04/21/aws-ec2-remote/</loc>
     <lastmod>2012-04-21T03:13:36.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://yyken.github.io/2012/05/05/notepadpp_ftp/</loc>
+    <loc>http://yyken.github.io/2012/05/05/notepadpp-ftp/</loc>
     <lastmod>2012-05-05T06:49:36.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://yyken.github.io/about/index.html</loc>
     <lastmod>2014-05-02T14:10:14.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://yyken.github.io/2014/04/30/hello-world/</loc>
-    <lastmod>2014-04-30T09:47:09.000Z</lastmod>
   </url>
   
 </urlset>
