@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yyken.github.io/"/>
-  <updated>2014-05-12T04:40:23.992Z</updated>
+  <updated>2014-05-13T07:55:18.506Z</updated>
   <id>http://yyken.github.io/</id>
   
   <author>
@@ -334,13 +334,112 @@ d_104[<span class="string">'date'</span>] = pd.to_datetime(d_104[<span class="st
   </entry>
   
   <entry>
-    <title><![CDATA[我用IPython寫Blog]]></title>
-    <link href="http://yyken.github.io/2014/04/29/blogging-with-ipython/"/>
-    <id>http://yyken.github.io/2014/04/29/blogging-with-ipython/</id>
+    <title><![CDATA[IPython Notebook 介紹]]></title>
+    <link href="http://yyken.github.io/2014/04/29/intro-ipython/"/>
+    <id>http://yyken.github.io/2014/04/29/intro-ipython/</id>
     <published>2014-04-29T03:50:31.000Z</published>
-    <updated>2014-05-12T04:30:07.000Z</updated>
-    <content type="html"><![CDATA[]]></content>
-    
+    <updated>2014-05-13T07:35:12.000Z</updated>
+    <content type="html"><![CDATA[<p>IPython Notebook真的非常強大。不但可以將執行的運算結果保存下來，就連用matplotlib畫出來的圖片也例外。而且每個cell可以切換成Mark
+down，可以用來說明解釋。最後儲存下來的notebook還可以轉換成不同的格式(html,markdown,slide...)，方便後續的工作。</p>
+<a id="more"></a>
+
+<p>首先開啟ipython notebook</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ipython notebook
+</pre></td></tr></table></figure>
+
+<p>程式會自動開啟一個瀏覽器視窗，點擊 New Notebook 就可以打開一個新的IPython Notebook了。</p>
+<p><img src="https://www.evernote.com/shard/s5/sh/7cc8fb1b-a617-4a11-81f4-8a9716db9df1/f45f1c09f60504738597cc4ccaefedcd/res/a01fa2fb-9459-4443-aa00-d62822d58015/skitch.png" alt="nb"></p>
+<h2 id="使用matplotlib畫圖">使用matplotlib畫圖</h2><figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">%<span class="title">pylab</span></span> inline
+</pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>x = linspace(<span class="number">0</span>, <span class="number">2</span>*pi)
+plot(x, sin(x), label=<span class="string">r'$\sin(x)$'</span>)
+plot(x, cos(x), <span class="string">'ro'</span>, label=<span class="string">r'$\cos(x)$'</span>)
+title(<span class="string">r'Two familiar functions'</span>)
+legend()
+</pre></td></tr></table></figure>
+
+<p><img src="https://dl.dropbox.com/u/4339788/blog_images/blog_files/blog_3_1.png" alt="png"></p>
+<h2 id="顯示數學運算式">顯示數學運算式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="keyword">from</span> sympy <span class="keyword">import</span> init_printing
+init_printing()
+x, y, z = sym.symbols(<span class="string">"x y z"</span>)
+</pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>Rational(<span class="number">3</span>,<span class="number">2</span>)*pi + exp(I*x) / (x**<span class="number">2</span> + y)
+</pre></td></tr></table></figure>
+
+<p>$$\frac{3 \pi}{2} + \frac{e^{i x}}{x^{2} + y}$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>eq = ((x+y)**<span class="number">2</span> * (x+<span class="number">1</span>))
+eq
+</pre></td></tr></table></figure>
+
+<p>$$\left(x + 1\right) \left(x + y\right)^{2}$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>expand(eq)
+</pre></td></tr></table></figure>
+
+<p>$$x^{3} + 2 x^{2} y + x^{2} + x y^{2} + 2 x y + y^{2}$$</p>
+<h2 id="嵌入外部資源">嵌入外部資源</h2><p>嵌入圖片或者是youtube</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image
+Image(url=<span class="string">'http://python.org/images/python-logo.gif'</span>)
+</pre></td></tr></table></figure>
+
+<p><img src="http://python.org/images/python-logo.gif"/></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="keyword">from</span> IPython.display <span class="keyword">import</span> YouTubeVideo
+YouTubeVideo(<span class="string">'iwVvqwLDsJo'</span>)
+</pre></td></tr></table></figure>
+
+<iframe src="https://www.youtube.com/embed/iwVvqwLDsJo" width="400" height="300" frameborder="0" scrolling="no" allowfullscreen> </iframe>
+
+<h2 id="執行其他的語言的程式碼">執行其他的語言的程式碼</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="string">%%ruby
+puts "Hello from Ruby <span class="subst">#{<span class="constant">RUBY_VERSION</span>}</span>"</span>
+</pre></td></tr></table></figure>
+
+<pre><code>Hello from Ruby 1.9.3
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>%%bash
+<span class="built_in">echo</span> <span class="string">"hello from <span class="variable">$BASH</span>"</span>
+</pre></td></tr></table></figure>
+
+<pre><code>hello from /bin/bash
+</code></pre><h2 id="使用nbconvert">使用nbconvert</h2><p>撰寫完的notebook，可以使用下面的指令輸出其他的格式</p>
+<p>輸出html</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ipython nbconvert nb<span class="preprocessor">.ipynb</span>
+</pre></td></tr></table></figure>
+
+<p>輸出makedown</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">ipython</span> <span class="comment">nbconvert</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">to</span> <span class="comment">markdown</span> <span class="comment">nb</span><span class="string">.</span><span class="comment">ipynb</span>
+</pre></td></tr></table></figure>
+
+<p>其他格式可以參考<a href="http://ipython.org/ipython-doc/rel-1.0.0/interactive/nbconvert.html" target="_blank">說明</a></p>
+]]></content>
+    <summary type="html"><![CDATA[<p>IPython Notebook真的非常強大。不但可以將執行的運算結果保存下來，就連用matplotlib畫出來的圖片也例外。而且每個cell可以切換成Mark
+down，可以用來說明解釋。最後儲存下來的notebook還可以轉換成不同的格式(html,markdown,slide...)，方便後續的工作。</p>
+]]></summary>
     
       <category term="IPython" scheme="http://yyken.github.io/tags/IPython/"/>
     
